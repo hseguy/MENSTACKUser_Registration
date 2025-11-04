@@ -19,6 +19,20 @@ app.use('/api/comments', commentRoutes);
 app.use('/api', likeRoutes);
 
 // 404 handler
+
+
+// Health check route
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Blog API Server is running!',
+        endpoints: {
+            register: 'POST /api/users/register'
+        }
+    });
+});
+
+
 app.use((req, res) => {
     return res.status(404).json({ success: false, message: 'Route not found' });
 });
